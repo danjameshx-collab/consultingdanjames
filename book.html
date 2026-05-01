@@ -19,7 +19,7 @@
         body {
             background-color: #030806;
             background-image:
-                radial-gradient(ellipse 80% 45% at 50% -5%, rgba(18, 60, 32, 0.55) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 40% at 50% -5%, rgba(18, 60, 32, 0.5) 0%, transparent 55%),
                 radial-gradient(ellipse 50% 30% at 50% 105%, rgba(12, 45, 22, 0.3) 0%, transparent 55%);
             color: #e8f0ea;
             font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
@@ -37,44 +37,81 @@
         }
 
         .header img {
-            height: 40px;
+            height: 48px;
             width: auto;
             display: block;
         }
 
-        /* ── Main Container ── */
-        .container {
-            max-width: 600px;
+        /* ── HR Divider ── */
+        .divider {
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            max-width: 720px;
             margin: 0 auto;
-            padding: 60px 24px 88px;
-        }
-
-        /* ── Card ── */
-        .card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 48px 36px 40px;
-            box-shadow:
-                0 8px 48px rgba(0, 0, 0, 0.45),
-                0 2px 12px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        }
-
-        /* ── Heading ── */
-        .page-title {
-            font-size: clamp(26px, 6vw, 36px);
-            font-weight: 800;
-            color: #1a2e22;
-            letter-spacing: -0.03em;
-            line-height: 1.15;
+            padding: 72px 24px 48px;
             text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(42, 120, 70, 0.18);
+            border: 1px solid rgba(60, 160, 90, 0.3);
+            border-radius: 100px;
+            padding: 6px 18px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #5dd98a;
             margin-bottom: 36px;
         }
 
-        /* ── Calendly widget wrapper ── */
-        .calendly-wrap {
-            border-radius: 16px;
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #5dd98a;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #5dd98a;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .headline {
+            font-size: clamp(30px, 5.5vw, 52px);
+            font-weight: 800;
+            line-height: 1.13;
+            letter-spacing: -0.025em;
+            color: #ffffff;
+            margin-bottom: 0;
+        }
+
+        .headline .green {
+            color: #4cd97b;
+        }
+
+        /* ── Calendly wrapper ── */
+        .content {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 24px 88px;
+        }
+
+        .calendly-block {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
             overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.06);
         }
 
         /* ── Footer ── */
@@ -85,19 +122,19 @@
         }
 
         .footer img {
-            height: 26px;
+            height: 28px;
             width: auto;
-            opacity: 0.35;
+            opacity: 0.5;
         }
 
         /* ── Responsive ── */
-        @media (max-width: 600px) {
-            .container {
-                padding: 32px 16px 64px;
+        @media (max-width: 700px) {
+            .hero {
+                padding: 52px 20px 40px;
             }
 
-            .card {
-                padding: 36px 20px 28px;
+            .content {
+                padding: 0 16px 64px;
             }
         }
     </style>
@@ -109,21 +146,29 @@
         <img src="Lincko-logo.png" alt="Lincko" onerror="this.style.display='none'">
     </header>
 
-    <!-- ── Main ── -->
-    <main class="container">
-        <div class="card">
+    <hr class="divider">
 
-            <h1 class="page-title">Pick Your Best Time<br>For Our Call</h1>
+    <!-- ── Hero ── -->
+    <section class="hero">
 
-            <!-- Calendly inline widget begin -->
-            <div class="calendly-wrap">
-                <div class="calendly-inline-widget" data-url="https://calendly.com/danjames765/d100-meeting" style="min-width:280px;height:700px;"></div>
-                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-            </div>
-            <!-- Calendly inline widget end -->
-
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Book Your Call
         </div>
-    </main>
+
+        <h1 class="headline">Pick Your Best Time<br>For <span class="green">Our Call</span></h1>
+
+    </section>
+
+    <!-- ── Calendly ── -->
+    <div class="content">
+        <div class="calendly-block">
+            <!-- Calendly inline widget begin -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/danjames765/d100-meeting" style="min-width:280px;height:700px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <!-- Calendly inline widget end -->
+        </div>
+    </div>
 
     <!-- ── Footer ── -->
     <footer class="footer">
